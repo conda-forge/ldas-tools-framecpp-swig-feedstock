@@ -1,7 +1,7 @@
 {% set name = "ldas-tools-framecpp-swig" %}
 {% set version = "2.6.8" %}
 {% set sha256 = "4f76e337e68ddc7250e472b52c1be4ebc5b59e9385fbcd5b424d3821addf3513" %}
-{% set ldas_tools_cmake_version = "1.0.6" %}
+{% set ldas_tools_cmake_version = "1.0.7" %}
 {% set ldas_tools_al_version = "2.6.2" %}
 {% set ldas_tools_framecpp_version = "2.6.5" %}
 
@@ -44,8 +44,6 @@ outputs:
     script: install-python.sh
     build:
       activate_in_script: True
-      # skip on macos for python3 until library is updated to handle static linking for python
-      skip: true  # [osx and py>=30]
     requirements:
       build:
         - {{ compiler('c') }}
