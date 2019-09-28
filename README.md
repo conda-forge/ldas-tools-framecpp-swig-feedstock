@@ -1,9 +1,9 @@
 About ldas-tools-framecpp-swig
 ==============================
 
-Home: https://ldastools.docs.ligo.org/LDAS_Tools/Beta/doc/ldas-tools-framecpp/framecpp/html/
+Home: https://wiki.ligo.org/Computing/LDASTools
 
-Package license: GPLv3
+Package license: GPL-3.0-or-later
 
 Feedstock license: BSD 3-Clause
 
