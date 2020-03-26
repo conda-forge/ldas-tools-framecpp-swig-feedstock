@@ -17,8 +17,8 @@ source:
   sha256: "{{ sha256 }}"
 
 build:
-  number: 0
-  skip: true  # [win]
+  number: 1
+  skip: true  # [win or python_impl == 'pypy']
 
 requirements:
   build:
