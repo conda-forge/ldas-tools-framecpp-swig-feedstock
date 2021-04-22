@@ -3,10 +3,10 @@
 {% set sha256 = "f727fe00d951da8168cb0f7e75ec57386d732cc72bf9029b80449bb5f8316be8" %}
 
 # dependencies
-{% set ldas_tools_cmake_version = "1.0.8" %}
-{% set ldas_tools_al_version = "2.6.3" %}
-{% set ldas_tools_al_swig_version = "2.6.7" %}
-{% set ldas_tools_framecpp_version = "2.7.0" %}
+{% set ldas_tools_cmake_version = "1.2.2" %}
+{% set ldas_tools_al_version = "2.6.5" %}
+{% set ldas_tools_al_swig_version = "2.6.8" %}
+{% set ldas_tools_framecpp_version = "2.7.1" %}
 
 package:
   name: {{ name }}
@@ -27,9 +27,9 @@ requirements:
     - cmake >=3.6
     - pkg-config  # [not win]
   host:
-    - ldas-tools-cmake >={{ ldas_tools_cmake_version }},<1.2.0
+    - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
     - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
-    - swig >=3.0.7,<4.0.0a0
+    - swig >=3.0.7
   run:
     - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
 
@@ -52,13 +52,13 @@ outputs:
         - cmake >=3.6
         - pkg-config  # [not win]
       host:
-        - ldas-tools-cmake >={{ ldas_tools_cmake_version }},<1.2.0
-        - ldas-tools-al {{ ldas_tools_al_version }}
-        - ldas-tools-framecpp {{ ldas_tools_framecpp_version }}
+        - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
+        - ldas-tools-al >={{ ldas_tools_al_version }}
+        - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
         - {{ pin_subpackage('ldas-tools-framecpp-swig', exact=True) }}
         - numpy
         - python
-        - swig >=3.0.7,<4.0.0a0
+        - swig >=3.0.7
       run:
         - ldas-tools-al >={{ ldas_tools_al_version }}
         - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
