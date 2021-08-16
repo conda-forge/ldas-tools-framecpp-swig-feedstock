@@ -1,33 +1,26 @@
 #!/bin/bash
 
 set -ex
-mkdir -p ${SRC_DIR}/build
-pushd ${SRC_DIR}/build
-
-# get python options (enable X, disable Y)
-if [ "${PY3K}" -eq 1 ]; then
-  PYTHONX="PYTHON3"
-  PYTHONY="PYTHON2"
-else
-  PYTHONX="PYTHON2"
-  PYTHONY="PYTHON3"
-fi
+mkdir -p _build
+pushd _build
 
 # configure
-cmake ${SRC_DIR} \
-  -DCMAKE_INSTALL_PREFIX=${PREFIX} \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DDISABLE_INSTALLATION_OF_SWIG_HEADERS=yes \
-  -DENABLE_SWIG_${PYTHONY}=no \
-  -DENABLE_SWIG_${PYTHONX}=yes \
-  -D${PYTHONX}_EXECUTABLE=${PYTHON} \
-  -D${PYTHONX}_VERSION=${PY_VER}
+cmake \
+	${SRC_DIR} \
+	${CMAKE_ARGS} \
+	-DCMAKE_BUILD_TYPE:STRING=Release \
+	-DDISABLE_INSTALLATION_OF_SWIG_HEADERS:BOOL=yes \
+	-DENABLE_SWIG_PYTHON2:BOOL=no \
+	-DENABLE_SWIG_PYTHON3:BOOL=yes \
+	-DPYTHON3_EXECUTABLE:FILE=${PYTHON} \
+	-DPYTHON3_VERSION:STRING=${PY_VER} \
+;
 
 # build
-cmake --build python -- -j ${CPU_COUNT}
+cmake --build python --parallel ${CPU_COUNT} --verbose
 
 # install
-cmake --build python --target install
+cmake --build python --parallel ${CPU_COUNT} --verbose --target install
 
 # test
-ctest -VV
+ctest --parallel ${CPU_COUNT} --verbose
