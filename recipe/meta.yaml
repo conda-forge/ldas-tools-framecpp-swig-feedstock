@@ -1,12 +1,12 @@
 {% set name = "ldas-tools-framecpp-swig" %}
-{% set version = "2.6.10" %}
-{% set sha256 = "f727fe00d951da8168cb0f7e75ec57386d732cc72bf9029b80449bb5f8316be8" %}
+{% set version = "2.6.11" %}
+{% set sha256 = "7cc2f167473940a70e4f2710460b33a6579ed1ed7529f296cb3e72fae3a024b5" %}
 
 # dependencies
 {% set ldas_tools_cmake_version = "1.2.2" %}
-{% set ldas_tools_al_version = "2.6.5" %}
+{% set ldas_tools_al_version = "2.6.6" %}
 {% set ldas_tools_al_swig_version = "2.6.8" %}
-{% set ldas_tools_framecpp_version = "2.7.1" %}
+{% set ldas_tools_framecpp_version = "2.7.2" %}
 
 package:
   name: {{ name }}
