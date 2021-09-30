@@ -1,6 +1,6 @@
 {% set name = "ldas-tools-framecpp-swig" %}
-{% set version = "2.6.11" %}
-{% set sha256 = "7cc2f167473940a70e4f2710460b33a6579ed1ed7529f296cb3e72fae3a024b5" %}
+{% set version = "2.6.12" %}
+{% set sha256 = "e106ce9a9d24e79cb06d868385d1e9b8df19feae88180a1bb5704bb99cd915c2" %}
 
 # dependencies
 {% set ldas_tools_cmake_version = "1.2.2" %}
