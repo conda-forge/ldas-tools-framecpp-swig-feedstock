@@ -14,6 +14,9 @@ package:
 source:
   url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
   sha256: e106ce9a9d24e79cb06d868385d1e9b8df19feae88180a1bb5704bb99cd915c2
+  patches:
+    # don't attempt to run framecpp_sample when cross compiling
+    - no-framecpp_sample.patch  # [build_platform != target_platform]
 
 build:
   number: 0
