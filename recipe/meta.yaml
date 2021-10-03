@@ -1,12 +1,11 @@
 {% set name = "ldas-tools-framecpp-swig" %}
 {% set version = "2.6.12" %}
-{% set sha256 = "e106ce9a9d24e79cb06d868385d1e9b8df19feae88180a1bb5704bb99cd915c2" %}
 
 # dependencies
-{% set ldas_tools_cmake_version = "1.2.2" %}
+{% set ldas_tools_cmake_version = "1.2.3" %}
 {% set ldas_tools_al_version = "2.6.6" %}
-{% set ldas_tools_al_swig_version = "2.6.8" %}
-{% set ldas_tools_framecpp_version = "2.7.2" %}
+{% set ldas_tools_al_swig_version = "2.6.9" %}
+{% set ldas_tools_framecpp_version = "2.8.1" %}
 
 package:
   name: {{ name }}
@@ -14,7 +13,7 @@ package:
 
 source:
   url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: e106ce9a9d24e79cb06d868385d1e9b8df19feae88180a1bb5704bb99cd915c2
 
 build:
   number: 0
@@ -43,8 +42,6 @@ outputs:
 
   - name: python-ldas-tools-framecpp
     script: install-python.sh
-    build:
-      activate_in_script: true
     requirements:
       build:
         - {{ compiler('c') }}
