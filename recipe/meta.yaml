@@ -17,7 +17,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [win or python_impl == 'pypy']
+  skip: true  # [win]
 
 requirements:
   build:
@@ -48,6 +48,11 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake >=3.6
         - pkg-config  # [not win]
+        - swig >=3.0.7
+        # extras for cross-compilation:
+        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
+        - numpy                               # [build_platform != target_platform]
+        - python                              # [build_platform != target_platform]
       host:
         - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
         - ldas-tools-al >={{ ldas_tools_al_version }}
@@ -55,7 +60,6 @@ outputs:
         - {{ pin_subpackage('ldas-tools-framecpp-swig', exact=True) }}
         - numpy
         - python
-        - swig >=3.0.7
       run:
         - ldas-tools-al >={{ ldas_tools_al_version }}
         - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
