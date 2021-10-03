@@ -23,4 +23,6 @@ cmake --build python --parallel ${CPU_COUNT} --verbose
 cmake --build python --parallel ${CPU_COUNT} --verbose --target install
 
 # test
-ctest --parallel ${CPU_COUNT} --verbose
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
+	ctest --parallel ${CPU_COUNT} --verbose
+fi

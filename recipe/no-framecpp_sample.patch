@@ -1,0 +1,11 @@
+--- CMakeLists.txt	2021-09-30 01:55:20.000000000 +0100
++++ CMakeLists.txt.2	2021-10-03 12:17:32.549733800 +0100
+@@ -204,8 +204,6 @@
+   file( MAKE_DIRECTORY "${FRAME_OUTPUT_DIR}" )
+ endif( )
+ 
+-cl_create_framefiles( ${FRAME_SPEC_SET} )
+-
+ add_custom_target( doc )
+ 
+ #========================================================================
