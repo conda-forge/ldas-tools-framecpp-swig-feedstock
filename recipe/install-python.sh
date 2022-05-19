@@ -16,6 +16,12 @@ cmake \
 	-DPYTHON3_VERSION:STRING=${PY_VER} \
 ;
 
+# override the PYTHON3 LIBRARY cache variable to stop
+# attempting to link against the static libpython library
+if [[ "${target_platform}" == "linux"* ]]; then
+	cmake -DPYTHON3_LIBRARIES="" ${SRC_DIR}
+fi
+
 # build
 cmake --build python --parallel ${CPU_COUNT} --verbose
 
