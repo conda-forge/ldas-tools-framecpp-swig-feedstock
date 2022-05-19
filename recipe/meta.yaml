@@ -47,6 +47,8 @@ outputs:
   - name: python-ldas-tools-framecpp
     script: install-python.sh
     build:
+      ignore_run_exports:
+        - numpy
       skip: true  # [python_impl != 'cpython']
     requirements:
       build:
