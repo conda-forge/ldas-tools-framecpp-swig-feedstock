@@ -45,7 +45,7 @@ outputs:
   - name: ldas-tools-framecpp-swig
 
   - name: python-ldas-tools-framecpp
-    script: install-python.sh
+    script: build-python.sh
     build:
       ignore_run_exports:
         - numpy
