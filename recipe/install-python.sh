@@ -1,8 +1,8 @@
 #!/bin/bash
 
 set -ex
-mkdir -p _build
-pushd _build
+mkdir -p _build_py${PY_VER}
+cd _build_py${PY_VER}
 
 # configure
 cmake \
@@ -29,6 +29,8 @@ cmake --build python --parallel ${CPU_COUNT} --verbose
 cmake --build python --parallel ${CPU_COUNT} --verbose --target install
 
 # test
-if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
+	# copy test frames from main build
+	cp -rv ${SRC_DIR}/_build/frames .
 	ctest --parallel ${CPU_COUNT} --verbose
 fi
