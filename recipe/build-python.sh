@@ -1,8 +1,8 @@
 #!/bin/bash
 
 set -ex
-mkdir -p _build
-pushd _build
+mkdir -p _build_py${PY_VER}
+cd _build_py${PY_VER}
 
 # configure
 cmake \
@@ -16,6 +16,12 @@ cmake \
 	-DPYTHON3_VERSION:STRING=${PY_VER} \
 ;
 
+# override the PYTHON3 LIBRARY cache variable to stop
+# attempting to link against the static libpython library
+if [[ "${target_platform}" == "linux"* ]]; then
+	cmake -DPYTHON3_LIBRARIES="" ${SRC_DIR}
+fi
+
 # build
 cmake --build python --parallel ${CPU_COUNT} --verbose
 
@@ -23,6 +29,8 @@ cmake --build python --parallel ${CPU_COUNT} --verbose
 cmake --build python --parallel ${CPU_COUNT} --verbose --target install
 
 # test
-if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
+	# copy test frames from main build
+	cp -rv ${SRC_DIR}/_build/frames .
 	ctest --parallel ${CPU_COUNT} --verbose
 fi
