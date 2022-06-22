@@ -1,5 +1,5 @@
 {% set name = "ldas-tools-framecpp-swig" %}
-{% set version = "2.6.12" %}
+{% set version = "2.6.13" %}
 
 # dependencies
 {% set ldas_tools_cmake_version = "1.2.3" %}
@@ -13,13 +13,13 @@ package:
 
 source:
   url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
-  sha256: e106ce9a9d24e79cb06d868385d1e9b8df19feae88180a1bb5704bb99cd915c2
+  sha256: 7a0d6ee461c76c8a3dac63b2a936b124612a8b4d74b44491901a3f7fe384fbad
   patches:
     # don't attempt to run framecpp_sample when cross compiling
     - no-framecpp_sample.patch  # [build_platform != target_platform]
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
 
 requirements:
