@@ -1,25 +1,25 @@
 {% set name = "ldas-tools-framecpp-swig" %}
-{% set version = "2.6.12" %}
+{% set version = "2.6.13" %}
 
 # dependencies
 {% set ldas_tools_cmake_version = "1.2.3" %}
-{% set ldas_tools_al_version = "2.6.6" %}
-{% set ldas_tools_al_swig_version = "2.6.9" %}
-{% set ldas_tools_framecpp_version = "2.8.1" %}
+{% set ldas_tools_al_version = "2.6.7" %}
+{% set ldas_tools_al_swig_version = "2.6.10" %}
+{% set ldas_tools_framecpp_version = "2.8.2" %}
 
 package:
-  name: {{ name }}
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
-  sha256: e106ce9a9d24e79cb06d868385d1e9b8df19feae88180a1bb5704bb99cd915c2
+  url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
+  sha256: 7a0d6ee461c76c8a3dac63b2a936b124612a8b4d74b44491901a3f7fe384fbad
   patches:
     # don't attempt to run framecpp_sample when cross compiling
     - no-framecpp_sample.patch  # [build_platform != target_platform]
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
 
 requirements:
@@ -84,7 +84,8 @@ outputs:
         - python -c "from LDAStools import frameCPP; stream = frameCPP.IFrameFStream('Z-ilwd_test_frame-600000000-1.gwf'); toc = stream.GetTOC(); print(toc.GetADC())"
     about:
       home: https://wiki.ligo.org/Computing/LDASTools
-      dev_url: https://git.ligo.org/ldastools/LDAS_Tools
+      dev_url: https://git.ligo.org/computing/ldastools/LDAS_Tools.git
+      doc_url: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-framecpp/
       license: GPL-3.0-or-later
       license_family: GPL
       license_file: COPYING
@@ -93,7 +94,8 @@ outputs:
 
 about:
   home: https://wiki.ligo.org/Computing/LDASTools
-  dev_url: https://git.ligo.org/ldastools/LDAS_Tools
+  dev_url: https://git.ligo.org/ldastools/LDAS_Tools.git
+  doc_url: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-framecpp/
   license: GPL-3.0-or-later
   license_family: GPL
   license_file: COPYING
