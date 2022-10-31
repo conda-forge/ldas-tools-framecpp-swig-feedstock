@@ -19,7 +19,7 @@ source:
     - no-framecpp_sample.patch  # [build_platform != target_platform]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -29,7 +29,7 @@ requirements:
     - cmake >=3.6
     - make
     - pkg-config  # [not win]
-    - swig >=3.0.7
+    - swig >=3.0.7,<4.1.0
   host:
     - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
     - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
@@ -57,7 +57,7 @@ outputs:
         - cmake >=3.6
         - make
         - pkg-config  # [not win]
-        - swig >=3.0.7
+        - swig >=3.0.7,<4.1.0
         # extras for cross-compilation:
         - cross-python_{{ target_platform }}  # [build_platform != target_platform]
         - numpy                               # [build_platform != target_platform]
