@@ -1,5 +1,5 @@
 {% set name = "ldas-tools-framecpp-swig" %}
-{% set version = "2.6.14" %}
+{% set version = "3.0.0" %}
 
 # dependencies
 {% set ldas_tools_cmake_version = "1.2.3" %}
@@ -13,13 +13,15 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: e98bf305d99d061db50f33e41a94424da28218972f74195ff06015ed535daaf2
+  sha256: b34d19b3bb66ba14484afefec482fdd164e57e6963f839590eef0a0cacdc8857
   patches:
     # don't attempt to run framecpp_sample when cross compiling
     - no-framecpp_sample.patch  # [build_platform != target_platform]
 
 build:
-  number: 2
+  error_overdepending: true
+  error_overlinking: true
+  number: 0
   skip: true  # [win]
 
 requirements:
@@ -47,6 +49,8 @@ outputs:
   - name: python-ldas-tools-framecpp
     script: build-python.sh
     build:
+      error_overdepending: true
+      error_overlinking: true
       ignore_run_exports:
         - numpy
       skip: true  # [python_impl != 'cpython']
@@ -63,6 +67,7 @@ outputs:
         - numpy                               # [build_platform != target_platform]
         - python                              # [build_platform != target_platform]
       host:
+        - boost-cpp
         - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
         - ldas-tools-al >={{ ldas_tools_al_version }}
         - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
@@ -70,6 +75,7 @@ outputs:
         - numpy
         - python
       run:
+        - boost-cpp
         - ldas-tools-al >={{ ldas_tools_al_version }}
         - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
         - {{ pin_compatible('numpy') }}
