@@ -1,17 +1,36 @@
+About ldas-tools-framecpp-swig-feedstock
+========================================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ldas-tools-framecpp-swig-feedstock/blob/main/LICENSE.txt)
+
+
 About ldas-tools-framecpp-swig
-==============================
+------------------------------
 
 Home: https://wiki.ligo.org/Computing/LDASTools
 
 Package license: GPL-3.0-or-later
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ldas-tools-framecpp-swig-feedstock/blob/main/LICENSE.txt)
 
 Summary: SWIG bindings for the LDAS Tools frameCPP library
 
 Development: https://git.ligo.org/ldastools/LDAS_Tools.git
 
 Documentation: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-framecpp/
+
+About python-ldas-tools-framecpp
+--------------------------------
+
+Home: https://wiki.ligo.org/Computing/LDASTools
+
+Package license: GPL-3.0-or-later
+
+Summary: Python bindings for the LDAS Tools frameCPP library
+
+Development: https://git.ligo.org/computing/ldastools/LDAS_Tools.git
+
+Documentation: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-framecpp/
+
+Python bindings for the LDAS Tools frameCPP library
 
 Current build status
 ====================
