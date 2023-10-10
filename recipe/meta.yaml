@@ -21,7 +21,7 @@ source:
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -67,7 +67,7 @@ outputs:
         - numpy                               # [build_platform != target_platform]
         - python                              # [build_platform != target_platform]
       host:
-        - boost-cpp
+        - libboost-devel
         - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
         - ldas-tools-al >={{ ldas_tools_al_version }}
         - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
@@ -75,7 +75,6 @@ outputs:
         - numpy
         - python
       run:
-        - boost-cpp
         - ldas-tools-al >={{ ldas_tools_al_version }}
         - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
         - {{ pin_compatible('numpy') }}
