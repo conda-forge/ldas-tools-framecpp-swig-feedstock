@@ -1,5 +1,5 @@
 {% set name = "ldas-tools-framecpp-swig" %}
-{% set version = "3.0.0" %}
+{% set version = "3.0.1" %}
 
 # dependencies
 {% set ldas_tools_cmake_version = "1.2.3" %}
@@ -13,7 +13,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: b34d19b3bb66ba14484afefec482fdd164e57e6963f839590eef0a0cacdc8857
+  sha256: de435e02d23af0672a52d4a79becec4b0481b8c9b48d74dd4f80c8fb1ebb9109
   patches:
     # fix for attribute.i
     - swig-41.patch
@@ -22,7 +22,7 @@ source:
 
 build:
   error_overlinking: true
-  number: 6
+  number: 0
   skip: true  # [win]
 
 requirements:
