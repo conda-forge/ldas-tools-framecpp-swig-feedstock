@@ -23,7 +23,7 @@ source:
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 3
+  number: 4
   skip: true  # [win]
 
 requirements:
@@ -81,7 +81,6 @@ outputs:
       run:
         - ldas-tools-al >={{ ldas_tools_al_version }}
         - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
-        - {{ pin_compatible('numpy') }}
         - python
         - python-ldas-tools-al >={{ ldas_tools_al_swig_version }}
     test:
