@@ -9,7 +9,7 @@ c_stdlib:
 c_stdlib_version:
 - '11.0'
 channel_sources:
-- conda-forge
+- conda-forge/label/numpy_rc,conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -23,10 +23,11 @@ libboost_devel:
 macos_machine:
 - arm64-apple-darwin20.0.0
 numpy:
+- '2.0'
+- '2.0'
+- '2.0'
 - '1.22'
-- '1.23'
-- '1.22'
-- '1.22'
+- '2.0'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -34,9 +35,11 @@ pin_run_as_build:
 python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
+- 3.12.* *_cpython
 - 3.8.* *_cpython
 - 3.9.* *_cpython
 python_impl:
+- cpython
 - cpython
 - cpython
 - cpython
