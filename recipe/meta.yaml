@@ -21,7 +21,6 @@ source:
     - no-framecpp_sample.patch  # [build_platform != target_platform]
 
 build:
-  error_overdepending: true
   error_overlinking: true
   number: 4
   skip: true  # [win]
@@ -52,7 +51,6 @@ outputs:
   - name: python-ldas-tools-framecpp
     script: build-python.sh
     build:
-      error_overdepending: true
       error_overlinking: true
       skip: true  # [python_impl != 'cpython']
     requirements:
