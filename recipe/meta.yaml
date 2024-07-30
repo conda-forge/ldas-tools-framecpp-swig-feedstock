@@ -85,12 +85,12 @@ outputs:
         - python
         - python-ldas-tools-al >={{ ldas_tools_al_swig_version }}
     test:
-      imports:
-        - LDAStools.frameCPP
+      files:
+        - test_ldas_tools_framecpp.py
+      requires:
+        - pytest
       commands:
-        # generate a test file, then read the channel list out of it
-        - framecpp_sample
-        - python -c "from LDAStools import frameCPP; stream = frameCPP.IFrameFStream('Z-ilwd_test_frame-600000000-1.gwf'); toc = stream.GetTOC(); print(toc.GetADC())"
+        - python -m pytest -ra -v test_ldas_tools_framecpp.py
     about:
       home: https://wiki.ligo.org/Computing/LDASTools
       dev_url: https://git.ligo.org/computing/ldastools/LDAS_Tools.git
