@@ -21,9 +21,8 @@ source:
     - no-framecpp_sample.patch  # [build_platform != target_platform]
 
 build:
-  error_overdepending: true
   error_overlinking: true
-  number: 3
+  number: 4
   skip: true  # [win]
 
 requirements:
@@ -52,10 +51,7 @@ outputs:
   - name: python-ldas-tools-framecpp
     script: build-python.sh
     build:
-      error_overdepending: true
       error_overlinking: true
-      ignore_run_exports:
-        - numpy
       skip: true  # [python_impl != 'cpython']
     requirements:
       build:
@@ -81,7 +77,6 @@ outputs:
       run:
         - ldas-tools-al >={{ ldas_tools_al_version }}
         - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
-        - {{ pin_compatible('numpy') }}
         - python
         - python-ldas-tools-al >={{ ldas_tools_al_swig_version }}
     test:
