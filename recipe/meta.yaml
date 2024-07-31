@@ -5,7 +5,7 @@
 {% set ldas_tools_cmake_version = "1.2.3" %}
 {% set ldas_tools_al_version = "2.6.7" %}
 {% set ldas_tools_al_swig_version = "2.6.10" %}
-{% set ldas_tools_framecpp_version = "2.9.1" %}
+{% set ldas_tools_framecpp_version = "2.9.1,<3.0a0" %}
 
 package:
   name: {{ name|lower }}
@@ -15,25 +15,27 @@ source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
   sha256: e98bf305d99d061db50f33e41a94424da28218972f74195ff06015ed535daaf2
   patches:
+    # fix for attribute.i
+    - swig-41.patch
     # don't attempt to run framecpp_sample when cross compiling
     - no-framecpp_sample.patch  # [build_platform != target_platform]
 
 build:
-  number: 2
+  error_overlinking: true
+  number: 3
   skip: true  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - cmake >=3.6
     - make
     - pkg-config  # [not win]
-    - swig >=3.0.7,<4.1.0
+    - swig >=3.0.7
   host:
     - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
-    - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
-  run:
     - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
 
 test:
@@ -47,22 +49,23 @@ outputs:
   - name: python-ldas-tools-framecpp
     script: build-python.sh
     build:
-      ignore_run_exports:
-        - numpy
+      error_overlinking: true
       skip: true  # [python_impl != 'cpython']
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - cmake >=3.6
         - make
         - pkg-config  # [not win]
-        - swig >=3.0.7,<4.1.0
+        - swig >=3.0.7
         # extras for cross-compilation:
         - cross-python_{{ target_platform }}  # [build_platform != target_platform]
         - numpy                               # [build_platform != target_platform]
         - python                              # [build_platform != target_platform]
       host:
+        - libboost-devel
         - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
         - ldas-tools-al >={{ ldas_tools_al_version }}
         - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
@@ -70,18 +73,15 @@ outputs:
         - numpy
         - python
       run:
-        - ldas-tools-al >={{ ldas_tools_al_version }}
-        - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
-        - {{ pin_compatible('numpy') }}
         - python
         - python-ldas-tools-al >={{ ldas_tools_al_swig_version }}
     test:
-      imports:
-        - LDAStools.frameCPP
+      files:
+        - test_ldas_tools_framecpp.py
+      requires:
+        - pytest
       commands:
-        # generate a test file, then read the channel list out of it
-        - framecpp_sample
-        - python -c "from LDAStools import frameCPP; stream = frameCPP.IFrameFStream('Z-ilwd_test_frame-600000000-1.gwf'); toc = stream.GetTOC(); print(toc.GetADC())"
+        - python -m pytest -ra -v test_ldas_tools_framecpp.py
     about:
       home: https://wiki.ligo.org/Computing/LDASTools
       dev_url: https://git.ligo.org/computing/ldastools/LDAS_Tools.git
