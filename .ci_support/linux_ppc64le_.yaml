@@ -21,7 +21,7 @@ docker_image:
 ldas_tools_framecpp:
 - '2.9'
 libboost_devel:
-- '1.84'
+- '1.86'
 numpy:
 - '2.0'
 - '2.0'
