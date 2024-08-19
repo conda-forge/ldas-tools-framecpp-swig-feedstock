@@ -21,7 +21,7 @@ cxx_compiler_version:
 ldas_tools_framecpp:
 - '2.9'
 libboost_devel:
-- '1.84'
+- '1.86'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 numpy:
