@@ -22,7 +22,7 @@ source:
 
 build:
   error_overlinking: true
-  number: 5
+  number: 6
   skip: true  # [win]
 
 requirements:
@@ -52,7 +52,7 @@ outputs:
     script: build-python.sh
     build:
       error_overlinking: true
-      skip: true  # [python_impl != 'cpython']
+      skip: true  # [python_impl != 'cpython' or py>=312]
     requirements:
       build:
         - {{ compiler('c') }}
