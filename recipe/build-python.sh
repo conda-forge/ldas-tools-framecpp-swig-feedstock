@@ -25,5 +25,12 @@ fi
 # build
 cmake --build python --parallel ${CPU_COUNT} --verbose
 
+# test
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
+	# copy test frames from main build
+	cp -rv ${SRC_DIR}/_build/frames .
+	ctest --parallel ${CPU_COUNT} --verbose
+fi
+
 # install
 cmake --build python --parallel ${CPU_COUNT} --verbose --target install

@@ -4,6 +4,8 @@
 import os
 import subprocess
 
+import numpy
+
 import pytest
 
 from LDAStools import frameCPP
@@ -35,6 +37,15 @@ def test_gettoc(sample_data):
         "Z0:RAMPED_REAL_4_1",
         "Z0:RAMPED_REAL_8_1",
     ])
+
+
+def test_getdataarray(sample_data):
+    stream = frameCPP.IFrameFStream(str(sample_data))
+    frdata = stream.ReadFrAdcData(0, "Z0:RAMPED_REAL_4_1")
+    for i in range(frdata.data.size()):
+        vect = frdata.data[i]
+        arr = vect.GetDataArray()
+        assert arr.dtype == numpy.float32
 
 
 def test_readfradcdata(sample_data):
