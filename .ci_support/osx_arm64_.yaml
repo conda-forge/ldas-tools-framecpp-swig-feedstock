@@ -12,6 +12,10 @@ c_stdlib_version:
 - '11.0'
 channel_sources:
 - conda-forge
+- conda-forge
+- conda-forge
+- conda-forge/label/python_rc,conda-forge
+- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -28,6 +32,7 @@ numpy:
 - '2.0'
 - '2.0'
 - '2.0'
+- '2'
 - '2.0'
 pin_run_as_build:
   python:
@@ -37,8 +42,10 @@ python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
 - 3.12.* *_cpython
+- 3.13.* *_cp313
 - 3.9.* *_cpython
 python_impl:
+- cpython
 - cpython
 - cpython
 - cpython
@@ -51,3 +58,4 @@ zip_keys:
 - - python
   - numpy
   - python_impl
+  - channel_sources
