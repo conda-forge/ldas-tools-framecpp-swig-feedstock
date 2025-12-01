@@ -17,6 +17,9 @@ source:
   patches:
     # don't attempt to run framecpp_sample when cross compiling
     - no-framecpp_sample.patch  # [build_platform != target_platform]
+    # workaround for segmentation fault
+    # see https://git.ligo.org/computing/ldastools/LDAS_Tools/-/issues/224
+    - getdata-nothread.patch
 
 build:
   error_overlinking: true
@@ -50,7 +53,7 @@ outputs:
     script: build-python.sh
     build:
       error_overlinking: true
-      skip: true  # [python_impl != 'cpython' or py>=312]
+      skip: true  # [python_impl != 'cpython']
     requirements:
       build:
         - {{ compiler('c') }}
