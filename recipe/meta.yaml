@@ -15,8 +15,6 @@ source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
   sha256: de435e02d23af0672a52d4a79becec4b0481b8c9b48d74dd4f80c8fb1ebb9109
   patches:
-    # fix for attribute.i
-    - swig-41.patch
     # don't attempt to run framecpp_sample when cross compiling
     - no-framecpp_sample.patch  # [build_platform != target_platform]
 
