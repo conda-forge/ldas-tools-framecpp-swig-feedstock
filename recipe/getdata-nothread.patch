@@ -1,0 +1,20 @@
+diff --git a/python/source/python/FrVect.i b/python/source/python/FrVect.i
+index 9bc5cc5b1..5dbded551 100644
+--- a/python/source/python/FrVect.i
++++ b/python/source/python/FrVect.i
+@@ -198,6 +198,7 @@
+ // %ignore FrVect::GetDataUncompressed();
+ #define FR_VECT_GET_DATA_UNCOMPRESSED_OVERRIDE
+ #if defined( FR_VECT_GET_DATA_UNCOMPRESSED_OVERRIDE )
++%nothread FrVect::GetDataUncompressed;
+ %extend FrVect {
+   PyObject* GetDataUncompressed( )
+   {
+@@ -209,6 +210,7 @@
+ }
+ #endif /* defined(FR_VECT_GET_DATA_UNCOMPRESSED_OVERRIDE) */
+ 
++%nothread FrVect::GetDataArray;
+ %extend FrVect {
+ 
+   //-------------------------------------------------------------------
