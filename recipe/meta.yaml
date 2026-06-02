@@ -1,5 +1,5 @@
 {% set name = "ldas-tools-framecpp-swig" %}
-{% set version = "3.0.2" %}
+{% set version = "3.1.1" %}
 
 # dependencies
 {% set ldas_tools_cmake_version = "1.2.3" %}
@@ -13,7 +13,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 413105749dcd60085849ab8b91786549e354bed052614f8218eeccde70957c32
+  sha256: 5dac5156f4e2c4689e93882ab8cf9b3d054ed9a89960ec276be3366ba1a58332
   patches:
     # don't attempt to run framecpp_sample when cross compiling
     - no-framecpp_sample.patch  # [build_platform != target_platform]
@@ -23,7 +23,7 @@ source:
 
 build:
   error_overlinking: true
-  number: 3
+  number: 0
   skip: true  # [win]
 
 requirements:
