@@ -16,7 +16,26 @@ def sample_data(tmp_path):
     curdir = os.getcwd()
     os.chdir(tmp_path)
     try:
-        subprocess.check_call(["framecpp_sample"])
+        # framecpp 4.x: bare `framecpp_sample` goes through test_frame()
+        # which produces TesT_<method>_<level>_... channel names and the
+        # filename Z-R_std_test_frame_ver8-... .  Passing any
+        # --channel-*-type flag routes through all_type_frame() which
+        # emits the historical Z0:RAMPED_<TYPE>_1 channels and writes
+        # the historical Z-ilwd_test_frame-... filename.
+        # See https://git.ligo.org/computing/ldastools/LDAS_Tools/-/issues/283
+        subprocess.check_call([
+            "framecpp_sample",
+            "--channel-adc-type", "int_2u",
+            "--channel-adc-type", "int_2s",
+            "--channel-adc-type", "int_4u",
+            "--channel-adc-type", "int_4s",
+            "--channel-adc-type", "int_8u",
+            "--channel-adc-type", "int_8s",
+            "--channel-adc-type", "real_4",
+            "--channel-adc-type", "real_8",
+            "--channel-adc-type", "complex_8",
+            "--channel-adc-type", "complex_16",
+        ])
         yield tmp_path / "Z-ilwd_test_frame-600000000-1.gwf"
     finally:
         os.chdir(curdir)
