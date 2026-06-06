@@ -33,6 +33,7 @@ requirements:
     - pkg-config  # [not win]
     - swig >=3.0.7
   host:
+    - libboost-devel
     - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
     - ldas-tools-framecpp >={{ ldas_tools_framecpp_version }}
   run:
