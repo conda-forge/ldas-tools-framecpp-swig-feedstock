@@ -16,10 +16,6 @@ recipe:
 source:
   url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
   sha256: 14eaee5c69902b81c0fc93646a5c600a19cb53cae17eee36d626ff3543904778
-  patches:
-    # don't attempt to run framecpp_sample when cross compiling
-    - if: build_platform != target_platform
-      then: no-framecpp_sample.patch
 
 build:
   dynamic_linking:
