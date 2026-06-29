@@ -4,9 +4,9 @@ context:
   name: ldas-tools-framecpp-swig
   version: 3.1.2
   # dependencies
-  ldas_tools_cmake_version: 1.4.0
-  ldas_tools_al_version: 2.8.0
-  ldas_tools_al_swig_version: 2.6.11
+  ldas_tools_cmake_version: 1.5.0
+  ldas_tools_al_version: 2.10.0
+  ldas_tools_al_swig_version: 2.6.14
   ldas_tools_framecpp_version: 4.0.0
 
 recipe:
@@ -38,10 +38,10 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ compiler('cxx') }}
         - ${{ stdlib('c') }}
-        - cmake >=3.6
+        - cmake >=3.12,<4.0.0a0
         - make
         - pkg-config
-        - swig >=3.0.7
+        - swig >=4.0.0
       host:
         - libboost-devel
         - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
@@ -77,10 +77,10 @@ outputs:
         - ${{ compiler('c') }}
         - ${{ compiler('cxx') }}
         - ${{ stdlib('c') }}
-        - cmake >=3.6
+        - cmake >=3.12,<4.0.0a0
         - make
         - pkg-config
-        - swig >=3.0.7
+        - swig >=4.0.0
         # extras for cross-compilation:
         - if: build_platform != target_platform
           then:
