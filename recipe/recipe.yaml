@@ -49,7 +49,7 @@ outputs:
         - pkg-config
         - swig >=3.0.7,<4.5.0a0
       host:
-        - libboost-devel
+        - libboost-headers
         - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
         - ldas-tools-framecpp >=${{ ldas_tools_framecpp_version }}
 
@@ -98,7 +98,7 @@ outputs:
             - numpy
             - python
       host:
-        - libboost-devel
+        - libboost-headers
         - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
         - ldas-tools-al >=${{ ldas_tools_al_version }}
         - ldas-tools-framecpp >=${{ ldas_tools_framecpp_version }}
