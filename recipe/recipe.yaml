@@ -1,0 +1,135 @@
+schema_version: 1
+
+context:
+  name: ldas-tools-framecpp-swig
+  version: 2.6.14
+  # dependencies
+  ldas_tools_cmake_version: 1.2.3
+  ldas_tools_al_version: 2.6.7
+  ldas_tools_al_swig_version: 2.6.10
+  ldas_tools_framecpp_version: 2.9.1,<3.0a0
+
+recipe:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
+  sha256: e98bf305d99d061db50f33e41a94424da28218972f74195ff06015ed535daaf2
+  patches:
+    # fix for attribute.i
+    - swig-41.patch
+    # don't attempt to run framecpp_sample when cross compiling
+    - if: build_platform != target_platform
+      then: no-framecpp_sample.patch
+    # workaround for segmentation fault
+    # see https://git.ligo.org/computing/ldastools/LDAS_Tools/-/issues/224
+    - getdata-nothread.patch
+
+
+build:
+  dynamic_linking:
+    overdepending_behavior: error
+  number: 11
+  skip:
+    - win
+
+outputs:
+  - staging:
+      name: ldas-tools-framecpp-swig-build
+    build:
+      script: build
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib('c') }}
+        - cmake >=3.6,<4.0.0a0
+        - make
+        - pkg-config
+        - swig >=3.0.7,<4.5.0a0
+      host:
+        - libboost-headers
+        - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
+        - ldas-tools-framecpp >=${{ ldas_tools_framecpp_version }}
+
+  - package:
+      name: ldas-tools-framecpp-swig
+    inherit: ldas-tools-framecpp-swig-build
+    build:
+      dynamic_linking:
+        overdepending_behavior: error
+      files:
+        - include/framecpp/**
+    tests:
+      - package_contents:
+          include:
+             - framecpp/frameCPP.i
+             - framecpp/python/frameCPPMacros.i
+
+  - package:
+      name: python-ldas-tools-framecpp
+    inherit:
+      from: ldas-tools-framecpp-swig-build
+      run_exports: false
+    build:
+      dynamic_linking:
+        overdepending_behavior: error
+      files:
+        - bin/*framecpp*
+        - lib/python*/site-packages/LDAStools/**/*frameCPP*
+      script: build-python
+      skip:
+        - win
+        - python_impl != 'cpython'
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib('c') }}
+        - cmake >=3.6,<4.0.0a0
+        - make
+        - pkg-config
+        - swig >=3.0.7,<4.5.0a0
+        # extras for cross-compilation:
+        - if: build_platform != target_platform
+          then:
+            - cross-python_${{ target_platform }}
+            - numpy
+            - python
+      host:
+        - libboost-headers
+        - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
+        - ldas-tools-al >=${{ ldas_tools_al_version }}
+        - ldas-tools-framecpp >=${{ ldas_tools_framecpp_version }}
+        - ${{ pin_subpackage('ldas-tools-framecpp-swig', exact=True) }}
+        - numpy
+        - python
+      run:
+        - python
+        - python-ldas-tools-al >=${{ ldas_tools_al_swig_version }}
+    tests:
+      - files:
+          recipe:
+            - test_ldas_tools_framecpp.py
+        requirements:
+          run:
+            - pytest
+        script:
+          - python -m pytest -ra -v test_ldas_tools_framecpp.py
+    about:
+      summary: Python bindings for the LDAS Tools frameCPP library
+      description: Python bindings for the LDAS Tools frameCPP library
+
+about:
+  license: GPL-3.0-or-later
+  license_file: COPYING
+  summary: SWIG bindings for the LDAS Tools frameCPP library
+  homepage: https://wiki.ligo.org/Computing/LDASTools
+  repository: https://git.ligo.org/ldastools/LDAS_Tools.git
+  documentation: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-framecpp/
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - emaros

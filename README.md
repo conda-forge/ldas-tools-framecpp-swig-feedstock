@@ -26,7 +26,7 @@ Package license: GPL-3.0-or-later
 
 Summary: Python bindings for the LDAS Tools frameCPP library
 
-Development: https://git.ligo.org/computing/ldastools/LDAS_Tools.git
+Development: https://git.ligo.org/ldastools/LDAS_Tools.git
 
 Documentation: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-framecpp/
 
@@ -89,31 +89,73 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `ldas-tools-framecpp-swig, python-ldas-tools-framecpp` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda install ldas-tools-framecpp-swig python-ldas-tools-framecpp
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba install ldas-tools-framecpp-swig python-ldas-tools-framecpp
 ```
 
-It is possible to list all of the versions of `ldas-tools-framecpp-swig` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+# for adding to your local project
+pixi add ldas-tools-framecpp-swig python-ldas-tools-framecpp
+# for installing globally
+pixi global install ldas-tools-framecpp-swig python-ldas-tools-framecpp
+```
+
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `ldas-tools-framecpp-swig` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda search ldas-tools-framecpp-swig --channel conda-forge
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba search ldas-tools-framecpp-swig --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search ldas-tools-framecpp-swig --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
@@ -125,6 +167,8 @@ mamba repoquery whoneeds ldas-tools-framecpp-swig --channel conda-forge
 # List dependencies of `ldas-tools-framecpp-swig`:
 mamba repoquery depends ldas-tools-framecpp-swig --channel conda-forge
 ```
+
+</details>
 
 
 About conda-forge
