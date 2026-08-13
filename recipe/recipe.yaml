@@ -47,7 +47,7 @@ outputs:
         - cmake >=3.6,<4.0.0a0
         - make
         - pkg-config
-        - swig >=4.0.0
+        - swig >=3.0.7,<4.5.0a0
       host:
         - libboost-devel
         - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
@@ -90,7 +90,7 @@ outputs:
         - cmake >=3.6,<4.0.0a0
         - make
         - pkg-config
-        - swig >=3.0.7
+        - swig >=3.0.7,<4.5.0a0
         # extras for cross-compilation:
         - if: build_platform != target_platform
           then:
