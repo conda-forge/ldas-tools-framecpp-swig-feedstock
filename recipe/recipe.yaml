@@ -20,7 +20,7 @@ source:
 build:
   dynamic_linking:
     overdepending_behavior: error
-  number: 0
+  number: 1
   skip:
     - win
 
@@ -52,8 +52,8 @@ outputs:
     tests:
       - package_contents:
           include:
-             - framecpp/frameCPP.i
-             - framecpp/python/frameCPPMacros.i
+            - framecpp/frameCPP.i
+            - framecpp/python/frameCPPMacros.i
 
   - package:
       name: python-ldas-tools-framecpp
