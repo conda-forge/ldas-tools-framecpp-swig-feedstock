@@ -92,11 +92,15 @@ outputs:
         - ldas-tools-al >=${{ ldas_tools_al_version }}
         - ldas-tools-framecpp >=${{ ldas_tools_framecpp_version }}
         - ${{ pin_subpackage('ldas-tools-framecpp-swig', exact=True) }}
+        - libpython
         - numpy
         - python
       run:
         - python
         - python-ldas-tools-al >=${{ ldas_tools_al_swig_version }}
+      ignore_run_exports:
+        by_name:
+          - libpython
     tests:
       - files:
           recipe:
