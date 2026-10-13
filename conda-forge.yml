@@ -1,6 +1,7 @@
 bot:
   abi_migration_branches:
   - v2.x
+  check_solvable: true
 build_platform:
   linux_ppc64le: linux_64
 conda_build:
