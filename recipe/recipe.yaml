@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: ldas-tools-framecpp-swig
-  version: 3.1.2
+  version: "3.1.3"
   # dependencies
   ldas_tools_cmake_version: 1.5.0
   ldas_tools_al_version: 2.10.0
@@ -15,7 +15,7 @@ recipe:
 
 source:
   url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
-  sha256: 14eaee5c69902b81c0fc93646a5c600a19cb53cae17eee36d626ff3543904778
+  sha256: 6b7f1148c499b08628d01161dc359e5cacab419d853daefa249ddb5e122be878
   patches:
     # Backport https://git.ligo.org/computing/ldastools/LDAS_Tools/-/merge_requests/392
     - 0001-fix-framecpp-swig-python-use-PyLong_FromLong-instead.patch
@@ -23,7 +23,7 @@ source:
 build:
   dynamic_linking:
     overdepending_behavior: error
-  number: 1
+  number: 0
   skip:
     - win
 
