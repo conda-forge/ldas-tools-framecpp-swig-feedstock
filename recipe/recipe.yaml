@@ -30,7 +30,7 @@ source:
 build:
   dynamic_linking:
     overdepending_behavior: error
-  number: 12
+  number: 13
   skip:
     - win
 
