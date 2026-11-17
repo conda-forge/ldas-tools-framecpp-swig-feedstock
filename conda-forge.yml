@@ -1,6 +1,7 @@
 bot:
   abi_migration_branches:
   - v2.x
+  check_solvable: true
 build_platform:
   linux_ppc64le: linux_64
 conda_build:
@@ -14,3 +15,4 @@ provider:
   linux_aarch64: default
   osx_arm64: default
 test: native_and_emulated
+
